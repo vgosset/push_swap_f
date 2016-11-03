@@ -5,10 +5,24 @@
 #                                                     +:+ +:+         +:+      #
 #    By: vgosset <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2016/10/05 11:44:28 by vgosset           #+#    #+#              #
-#    Updated: 2016/10/26 14:42:06 by vgosset          ###   ########.fr        #
+#    Created: 2016/11/03 16:23:19 by vgosset           #+#    #+#              #
+#    Updated: 2016/11/03 16:23:21 by vgosset          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
+
+FILES_SWAP =			main.c \
+						rules_a.c \
+						rules_b.c \
+						rules_c.c \
+						push.c \
+						algo.c \
+						display.c \
+						gt_values.c \
+						gt_arg.c \
+						sort_sample.c \
+						rotate_sort.c \
+						ez_begin.c
 
 FILES_CHECKER =			main.c \
 						get_next_line.c \
@@ -17,20 +31,7 @@ FILES_CHECKER =			main.c \
 						rules_b.c \
 						push.c \
 						get_arg.c
-
-FILES_SWAP =			main.c \
-						rules_a.c \
-						rules_b.c \
-						rules_c.c \
-						push.c \
-						process.c \
-						display.c \
-						get_values.c \
-						get_arg.c \
-						sort_sample_list.c \
-						rotate_sort.c \
-						easy_begin.c
-
+ 
 SRC_SWAP =				$(addprefix src_swap/, $(FILES_SWAP))
 
 SRC_CHECKER =			$(addprefix src_checker/, $(FILES_CHECKER))
@@ -63,7 +64,7 @@ $(OBJS_CHECKER):
 	@make obj_checker_mv
 
 obj_checker_mv:
-	1@mkdir obj_checker
+	@mkdir obj_checker
 	@mv $(FILES_CHECKER:.c=.o) ./obj_checker/
 
 obj_checker_rm:

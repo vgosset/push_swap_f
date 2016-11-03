@@ -1,18 +1,7 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   make_rules.c                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: vgosset <marvin@42.fr>                    +#+  +:+       +#+         */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/10/12 13:46:22 by vgosset          #+#    #+#              */
-/*   Updated: 2016/10/26 15:29:26 by vgosset          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
 #include "../includes/checker.h"
 
-static int		ez_rule(t_checker *c, char *rule)
+static int		easy_rule(t_checker *c, char *rule)
 {
 	if (ft_strncmp(rule, "ss", 3) == 0)
 	{
@@ -30,11 +19,11 @@ static int		ez_rule(t_checker *c, char *rule)
 		rule_rb(c);
 	}
 	else
-		return (_ERROR_);
-	return (_SUCCESS_);
+		return (0);
+	return (1);
 }
 
-int		select_rule(t_checker *c, char *rule)
+int				select_rule(t_checker *c, char *rule)
 {
 	if (ft_strncmp(rule, "sa", 3) == 0)
 		rule_sa(c);
@@ -52,9 +41,9 @@ int		select_rule(t_checker *c, char *rule)
 		rule_rra(c);
 	else if (ft_strncmp(rule, "rrb", 4) == 0)
 		rule_rrb(c);
-	else if (ez_rule(c, rule) == _SUCCESS_)
+	else if (easy_rule(c, rule) == 1)
 		;
 	else
-		return (_ERROR_);
-	return (_SUCCESS_);
+		return (0);
+	return (1);
 }

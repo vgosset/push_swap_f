@@ -6,7 +6,7 @@
 /*   By: vgosset <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/01 15:15:23 by vgosset           #+#    #+#             */
-/*   Updated: 2016/10/26 14:47:14 by vgosset          ###   ########.fr       */
+/*   Updated: 2016/11/03 12:27:54 by vgosset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 # include <unistd.h>
 
-# include "../libft/libft.h"
+# include "../libft/includes/libft.h"
 
 # define NO_FAULT		0
 # define EASY_ROTATE	1

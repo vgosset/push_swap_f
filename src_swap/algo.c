@@ -6,7 +6,7 @@
 /*   By: vgosset <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/26 15:48:58 by vgosset           #+#    #+#             */
-/*   Updated: 2016/10/26 15:49:06 by vgosset          ###   ########.fr       */
+/*   Updated: 2016/11/03 12:38:01 by vgosset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,14 +42,14 @@ int				algo_reverse(t_pushswap *ps)
 	while (cpt < ps->tmpa - 1)
 	{
 		if (ps->a[cpt] < ps->a[cpt + 1])
-			return (_ERROR_);
+			return (0);
 		cpt++;
 	}
 	if (cpt == 2)
 	{
 		rule_sa(ps);
 		rule_rra(ps);
-		return (_SUCCESS_);
+		return (1);
 	}
 	while (ps->tmpa > 1)
 	{
@@ -58,7 +58,7 @@ int				algo_reverse(t_pushswap *ps)
 	}
 	while (ps->tmpb)
 		rule_pa(ps);
-	return (_SUCCESS_);
+	return (1);
 }
 
 static void		segment_sort(t_pushswap *ps, int stage)
@@ -108,7 +108,7 @@ void			push_swap(t_pushswap *ps)
 
 	if (ps->print_display == true || ps->final_display == true)
 		display(ps);
-	if (easy_begin(ps) == _SUCCESS_)
+	if (easy_begin(ps) == 1)
 		return ;
 	sorted = ft_intdup(ps->a, ps->len);
 	sort_sample_list(sorted, 0, ps->len - 1);

@@ -6,7 +6,7 @@
 /*   By: vgosset <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/26 15:50:43 by vgosset           #+#    #+#             */
-/*   Updated: 2016/10/26 15:50:47 by vgosset          ###   ########.fr       */
+/*   Updated: 2016/11/03 12:43:23 by vgosset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,20 +19,20 @@ int				rotate_basic_a(t_pushswap *ps)
 	int		end;
 
 	if (ps->tmpa < 2)
-		return (_ERROR_);
+		return (0);
 	i = -1;
 	end = ps->a[ps->tmpa - 1];
 	if (ps->a[0] > end && end > ps->a[1])
 	{
 		rule_ra(ps);
-		return (_SUCCESS_);
+		return (1);
 	}
 	else if (ps->a[0] > end)
 	{
 		rule_rra(ps);
-		return (_SUCCESS_);
+		return (1);
 	}
-	return (_ERROR_);
+	return (0);
 }
 
 static void		rotate_hard_help(t_pushswap *ps, int i, int tmp, int tmp2)
@@ -76,8 +76,8 @@ int				rotate_hard_a(t_pushswap *ps)
 		if (ps->a[i] < ps->a[0])
 		{
 			rotate_hard_help(ps, i, i, ps->tmpa);
-			return (_SUCCESS_);
+			return (1);
 		}
 	}
-	return (_ERROR_);
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: vgosset <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/16 16:08:14 by vgosset           #+#    #+#             */
-/*   Updated: 2016/10/26 16:05:22 by vgosset          ###   ########.fr       */
+/*   Updated: 2016/11/03 15:20:25 by vgosset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ static int		get_rule(t_checker *c)
 	line = NULL;
 	while (get_next_line(0, &line) > 0)
 	{
-		if (select_rule(c, line) == _ERROR_)
-			return (_ERROR_);
+		if (select_rule(c, line) == 0)
+			return (0);
 	}
-	return (_SUCCESS_);
+	return (1);
 }
 
 static int		check_dbl(t_checker *c)
@@ -40,11 +40,11 @@ static int		check_dbl(t_checker *c)
 			if (j != i)
 			{
 				if (c->a[i] == c->a[j])
-					return (_ERROR_);
+					return (0);
 			}
 		}
 	}
-	return (_SUCCESS_);
+	return (1);
 }
 
 static int		check_order(t_checker *c)
@@ -52,14 +52,14 @@ static int		check_order(t_checker *c)
 	int		i;
 
 	if (c->tmpb != 0)
-		return (_ERROR_);
+		return (0);
 	i = c->len - 1;
 	while (--i >= 0)
 	{
 		if (c->a[i] > c->a[i + 1])
-			return (_ERROR_);
+			return (0);
 	}
-	return (_SUCCESS_);
+	return (1);
 }
 
 int				main(int argc, char **argv)

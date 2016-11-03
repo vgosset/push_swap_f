@@ -6,7 +6,7 @@
 /*   By: vgosset <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/26 15:50:26 by vgosset           #+#    #+#             */
-/*   Updated: 2016/10/26 15:50:29 by vgosset          ###   ########.fr       */
+/*   Updated: 2016/11/03 12:39:58 by vgosset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ static int		swap_last(t_pushswap *ps)
 		rule_rra(ps);
 		rule_rra(ps);
 		rule_sa(ps);
-		return (_SUCCESS_);
+		return (1);
 	}
-	return (_ERROR_);
+	return (0);
 }
 
 static int		choice_algo(t_pushswap *ps)
@@ -36,7 +36,7 @@ static int		choice_algo(t_pushswap *ps)
 	while (cpt < ps->tmpa - 1 && ps->a[cpt] < ps->a[cpt + 1])
 		cpt++;
 	if (cpt == ps->tmpa - 1)
-		return (_ERROR_);
+		return (0);
 	cpt++;
 	while (cpt < ps->tmpa - 1 && ps->a[cpt] < ps->a[cpt + 1] &&
 			ps->a[cpt + 1] < ps->a[0])
@@ -50,29 +50,29 @@ static int		choice_algo(t_pushswap *ps)
 		return (HARD_ROTATE);
 	if (get_fault(ps->a, ps->tmpa) + 1 == ps->tmpa - 1)
 		return (swap_last(ps));
-	return (_ERROR_);
+	return (0);
 }
 
 int				easy_begin(t_pushswap *ps)
 {
 	int		choice;
 
-	if (algo_reverse(ps) == _SUCCESS_ && get_fault(ps->a, ps->tmpa) == NO_FAULT)
-		return (_SUCCESS_);
+	if (algo_reverse(ps) == 1 && get_fault(ps->a, ps->tmpa) == NO_FAULT)
+		return (1);
 	choice = choice_algo(ps);
 	if (choice == EASY_ROTATE)
 	{
-		while (rotate_basic_a(ps) == _SUCCESS_)
+		while (rotate_basic_a(ps) == 1)
 			;
 		if (get_fault(ps->a, ps->tmpa) == NO_FAULT)
-			return (_SUCCESS_);
+			return (1);
 	}
 	else if (choice == HARD_ROTATE)
 	{
-		while (rotate_hard_a(ps) == _SUCCESS_)
+		while (rotate_hard_a(ps) == 1)
 			;
 		if (get_fault(ps->a, ps->tmpa) == NO_FAULT)
-			return (_SUCCESS_);
+			return (1);
 	}
-	return (_ERROR_);
+	return (0);
 }

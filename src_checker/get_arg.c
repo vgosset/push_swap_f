@@ -6,7 +6,7 @@
 /*   By: vgosset <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/12 14:12:28 by vgosset           #+#    #+#             */
-/*   Updated: 2016/10/26 16:04:58 by vgosset          ###   ########.fr       */
+/*   Updated: 2016/11/03 12:44:32 by vgosset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,8 @@ int				get_arg(t_checker *c, int ac, char **av)
 		j = -1;
 		while (lst[++j])
 		{
-			if (!ft_strisdigit(lit[j]))
-				return (_ERROR_);
+			if (!ft_strisdigit(lst[j]))
+				return (0);
 			c->len++;
 		}
 		ft_memdel2((void ***)&lst);
@@ -63,5 +63,5 @@ int				get_arg(t_checker *c, int ac, char **av)
 	get_arg_2(c, ac, av);
 	c->tmpa = c->len;
 	c->tmpb = 0;
-	return (_SUCCESS_);
+	return (1);
 }
