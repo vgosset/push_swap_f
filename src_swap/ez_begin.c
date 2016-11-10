@@ -5,11 +5,10 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: vgosset <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/10/26 15:50:26 by vgosset           #+#    #+#             */
-/*   Updated: 2016/11/10 12:32:29 by vgosset          ###   ########.fr       */
+/*   Created: 2016/10/20 10:15:05 by vgosset           #+#    #+#             */
+/*   Updated: 2016/11/10 15:07:39 by vgosset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "../includes/push_swap.h"
 
@@ -23,9 +22,9 @@ static int		swap_last(t_pushswap *ps)
 		rule_rra(ps);
 		rule_rra(ps);
 		rule_sa(ps);
-		return (1);
+		return (_SUCCESS_);
 	}
-	return (0);
+	return (_ERROR_);
 }
 
 static int		choice_algo(t_pushswap *ps)
@@ -36,7 +35,7 @@ static int		choice_algo(t_pushswap *ps)
 	while (cpt < ps->tmpa - 1 && ps->a[cpt] < ps->a[cpt + 1])
 		cpt++;
 	if (cpt == ps->tmpa - 1)
-		return (0);
+		return (_ERROR_);
 	cpt++;
 	while (cpt < ps->tmpa - 1 && ps->a[cpt] < ps->a[cpt + 1] &&
 			ps->a[cpt + 1] < ps->a[0])
@@ -50,29 +49,29 @@ static int		choice_algo(t_pushswap *ps)
 		return (HARD_ROTATE);
 	if (get_fault(ps->a, ps->tmpa) + 1 == ps->tmpa - 1)
 		return (swap_last(ps));
-	return (0);
+	return (_ERROR_);
 }
 
 int				easy_begin(t_pushswap *ps)
 {
 	int		choice;
 
-	if (algo_reverse(ps) == 1 && get_fault(ps->a, ps->tmpa) == NO_FAULT)
-		return (1);
+	if (algo_reverse(ps) == _SUCCESS_ && get_fault(ps->a, ps->tmpa) == NO_FAULT)
+		return (_SUCCESS_);
 	choice = choice_algo(ps);
 	if (choice == EASY_ROTATE)
 	{
-		while (rotate_basic_a(ps) == 1)
+		while (rotate_basic_a(ps) == _SUCCESS_)
 			;
 		if (get_fault(ps->a, ps->tmpa) == NO_FAULT)
-			return (1);
+			return (_SUCCESS_);
 	}
 	else if (choice == HARD_ROTATE)
 	{
-		while (rotate_hard_a(ps) == 1)
+		while (rotate_hard_a(ps) == _SUCCESS_)
 			;
 		if (get_fault(ps->a, ps->tmpa) == NO_FAULT)
-			return (1);
+			return (_SUCCESS_);
 	}
-	return (0);
+	return (_ERROR_);
 }

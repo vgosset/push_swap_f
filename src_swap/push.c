@@ -5,12 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: vgosset <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/10/08 12:22:36 by vgosset           #+#    #+#             */
-/*   Updated: 2016/10/26 15:13:07 by vgosset          ###   ########.fr       */
+/*   Created: 2016/11/10 14:46:52 by vgosset           #+#    #+#             */
+/*   Updated: 2016/11/10 15:06:29 by vgosset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/checker.h"
+#include "../includes/push_swap.h"
 
 void	push_up_sort(int *t, int len)
 {

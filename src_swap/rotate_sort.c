@@ -5,11 +5,10 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: vgosset <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/10/26 15:50:43 by vgosset           #+#    #+#             */
-/*   Updated: 2016/11/10 14:08:01 by vgosset          ###   ########.fr       */
+/*   Created: 2016/11/10 14:47:00 by vgosset           #+#    #+#             */
+/*   Updated: 2016/11/10 15:06:36 by vgosset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "../includes/push_swap.h"
 
@@ -19,39 +18,39 @@ int				rotate_basic_a(t_pushswap *ps)
 	int		end;
 
 	if (ps->tmpa < 2)
-		return (0);
+		return (_ERROR_);
 	i = -1;
 	end = ps->a[ps->tmpa - 1];
 	if (ps->a[0] > end && end > ps->a[1])
 	{
 		rule_ra(ps);
-		return (1);
+		return (_SUCCESS_);
 	}
 	else if (ps->a[0] > end)
 	{
 		rule_rra(ps);
-		return (1);
+		return (_SUCCESS_);
 	}
-	return (0);
+	return (_ERROR_);
 }
 
 static void		rotate_hard_help(t_pushswap *ps, int i, int tmp, int tmp2)
 {
-	int		factor_good;
+	int		good_f;
 
-	factor_good = 0;
+	good_f = 0;
 	while (ps->a[tmp - 1] < ps->a[tmp])
 	{
-		factor_good++;
+		good_f++;
 		tmp--;
 	}
 	tmp2 = ps->tmpa;
-	tmp = (tmp2 - i) + factor_good;
+	tmp = (tmp2 - i) + good_f;
 	while (tmp--)
 		rule_rra(ps);
 	if (get_fault(ps->a, ps->tmpa) == NO_FAULT)
 		return ;
-	tmp = factor_good + 1;
+	tmp = good_f + 1;
 	if (tmp == 1 && (tmp2 - i) - 1 <= 0)
 		return ;
 	while (tmp--)
@@ -59,7 +58,7 @@ static void		rotate_hard_help(t_pushswap *ps, int i, int tmp, int tmp2)
 	tmp = (tmp2 - i) - 1;
 	while (tmp--)
 		rule_ra(ps);
-	tmp = factor_good + 1;
+	tmp = good_f + 1;
 	while (tmp--)
 		rule_pa(ps);
 }
@@ -76,8 +75,8 @@ int				rotate_hard_a(t_pushswap *ps)
 		if (ps->a[i] < ps->a[0])
 		{
 			rotate_hard_help(ps, i, i, ps->tmpa);
-			return (1);
+			return (_SUCCESS_);
 		}
 	}
-	return (0);
+	return (_ERROR_);
 }

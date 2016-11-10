@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: vgosset <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/10/12 16:18:45 by vgosset           #+#    #+#             */
-/*   Updated: 2016/11/03 16:19:46 by vgosset          ###   ########.fr       */
+/*   Created: 2016/11/10 14:46:43 by vgosset           #+#    #+#             */
+/*   Updated: 2016/11/10 15:06:24 by vgosset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,11 @@ static int		check_duplicate(t_pushswap *ps)
 			if (j != i)
 			{
 				if (ps->a[i] == ps->a[j])
-					return (0);
+					return (_ERROR_);
 			}
 		}
 	}
-	return (1);
+	return (_SUCCESS_);
 }
 
 static int		check_basic_sort(t_pushswap *ps)
@@ -41,9 +41,9 @@ static int		check_basic_sort(t_pushswap *ps)
 	while (--i >= 0)
 	{
 		if (ps->a[i] > ps->a[i + 1])
-			return (0);
+			return (_ERROR_);
 	}
-	return (1);
+	return (_SUCCESS_);
 }
 
 static int		get_mode(t_pushswap *ps, int ac, char **av)

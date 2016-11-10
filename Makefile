@@ -6,7 +6,7 @@
 #    By: vgosset <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/03 16:23:19 by vgosset           #+#    #+#              #
-#    Updated: 2016/11/03 16:23:21 by vgosset          ###   ########.fr        #
+#    Updated: 2016/11/10 14:42:51 by vgosset          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ FILES_CHECKER =			main.c \
 						rules_a.c \
 						rules_b.c \
 						push.c \
-						get_arg.c
+						gt_arg.c
  
 SRC_SWAP =				$(addprefix src_swap/, $(FILES_SWAP))
 

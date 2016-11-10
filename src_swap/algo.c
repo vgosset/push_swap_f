@@ -5,11 +5,10 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: vgosset <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/10/26 15:48:58 by vgosset           #+#    #+#             */
-/*   Updated: 2016/11/10 14:14:51 by vgosset          ###   ########.fr       */
+/*   Created: 2016/10/12 12:35:36 by vgosset           #+#    #+#             */
+/*   Updated: 2016/11/10 15:05:42 by vgosset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "../includes/push_swap.h"
 
@@ -27,7 +26,7 @@ static void		insertion_algo(t_pushswap *ps)
 		}
 		else
 		{
-			while (i++ <= ps->tmpb)
+			while (++i <= ps->tmpb)
 				rule_rrb(ps);
 		}
 		rule_pa(ps);
@@ -42,14 +41,14 @@ int				algo_reverse(t_pushswap *ps)
 	while (cpt < ps->tmpa - 1)
 	{
 		if (ps->a[cpt] < ps->a[cpt + 1])
-			return (0);
+			return (_ERROR_);
 		cpt++;
 	}
 	if (cpt == 2)
 	{
 		rule_sa(ps);
 		rule_rra(ps);
-		return (1);
+		return (_SUCCESS_);
 	}
 	while (ps->tmpa > 1)
 	{
@@ -58,7 +57,7 @@ int				algo_reverse(t_pushswap *ps)
 	}
 	while (ps->tmpb)
 		rule_pa(ps);
-	return (1);
+	return (_SUCCESS_);
 }
 
 static void		segment_sort(t_pushswap *ps, int stage)
@@ -101,27 +100,27 @@ static int		segment_len(int len)
 
 void			push_swap(t_pushswap *ps)
 {
-	int		*sorted;
+	int		*sort;
 	int		cpt;
 	int		stage;
-	int		segment;
+	int		seg;
 
 	if (ps->print_display == true || ps->final_display == true)
 		display(ps);
-	if (easy_begin(ps) == 1)
+	if (easy_begin(ps) == _SUCCESS_)
 		return ;
-	sorted = ft_intdup(ps->a, ps->len);
-	sort_sample_list(sorted, 0, ps->len - 1);
+	sort = ft_intdup(ps->a, ps->len);
+	sort_sample_list(sort, 0, ps->len - 1);
 	cpt = segment_len(ps->len);
 	stage = ps->len / cpt;
-	segment = stage;
+	seg = stage;
 	while (cpt-- > 1)
 	{
-		segment_sort(ps, sorted[stage]);
-		stage += segment;
+		segment_sort(ps, sort[stage]);
+		stage += seg;
 	}
 	while (ps->tmpa)
 		rule_pb(ps);
 	insertion_algo(ps);
-	ft_memdel((void **)&sorted);
+	ft_memdel((void **)&sort);
 }
