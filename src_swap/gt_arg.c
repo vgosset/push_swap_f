@@ -1,67 +1,61 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   gt_arg.c                                          :+:      :+:    :+:   */
+/*   get_arg.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vgosset <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/10/12 14:12:28 by vgosset           #+#    #+#             */
-/*   Updated: 2016/11/03 12:40:55 by vgosset          ###   ########.fr       */
+/*   Created: 2016/11/08 13:09:52 by vgosset           #+#    #+#             */
+/*   Updated: 2016/11/08 13:10:09 by vgosset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/checker.h"
 
-static void		get_arg_2(t_checker *c, int ac, char **av)
+#include "../includes/push_swap.h"
+
+void	get_arg_help(t_pushswap *ps, int ac, char **av, int arg)
 {
-	char	**lst;
+	char	**list;
 	int		i;
 	int		j;
 	int		tmp;
 
-	c->a = (int *)ft_memalloc(sizeof(int) * (c->len));
-	c->b = (int *)ft_memalloc(sizeof(int) * (c->len));
-	i = 0;
+	ps->a = (int *)ft_memalloc(sizeof(int) * (ps->len));
+	ps->b = (int *)ft_memalloc(sizeof(int) * (ps->len));
+	i = arg;
 	tmp = -1;
 	while (++i < ac)
 	{
-		lst = ft_strsplit(av[i], ' ');
+		list = ft_strsplit(av[i], ' ');
 		j = -1;
-		while (lst[++j])
-		{
-			if (ft_strlen(lst[j]) > 10)
-			{
-				ft_putstr_fd("Error\n", 2);
-				_exit(0);
-			}
-			c->a[++tmp] = ft_atoi(lst[j]);
-		}
-		ft_memdel2((void ***)&lst);
+		while (list[++j])
+			ps->a[++tmp] = ft_atoi(list[j]);
+		ft_memdel2((void ***)&list);
 	}
+	ps->tmpa = ps->len;
+	ps->tmpb = 0;
 }
 
-int				get_arg(t_checker *c, int ac, char **av)
+int		get_arg(t_pushswap *ps, int ac, char **av, int arg)
 {
 	int		i;
 	int		j;
-	char	**lst;
+	char	**list;
 
-	i = 0;
-	c->len = 0;
+	i = arg;
+	ps->len = 0;
 	while (++i < ac)
 	{
-		lst = ft_strsplit(av[i], ' ');
+		list = ft_strsplit(av[i], ' ');
 		j = -1;
-		while (lst[++j])
+		while (list[++j])
 		{
-			if (!ft_strisdigit(lst[j]))
+			if (!ft_strisdigit(list[j]))
 				return (0);
-			c->len++;
+			ps->len++;
 		}
-		ft_memdel2((void ***)&lst);
+		ft_memdel2((void ***)&list);
 	}
-	get_arg_2(c, ac, av);
-	c->tmpa = c->len;
-	c->tmpb = 0;
+	get_arg_help(ps, ac, av, arg);
 	return (1);
 }

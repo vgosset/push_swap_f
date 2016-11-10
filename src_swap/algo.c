@@ -6,7 +6,7 @@
 /*   By: vgosset <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/26 15:48:58 by vgosset           #+#    #+#             */
-/*   Updated: 2016/11/03 12:38:01 by vgosset          ###   ########.fr       */
+/*   Updated: 2016/11/10 14:14:51 by vgosset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,19 @@
 
 static void		insertion_algo(t_pushswap *ps)
 {
-	int		index;
+	int		i;
 
 	while (ps->tmpb)
 	{
-		index = get_index(ps->b, ps->tmpb, get_max(ps->b, ps->tmpb));
-		if (index < ps->tmpb / 2)
+		i = get_index(ps->b, ps->tmpb, get_max(ps->b, ps->tmpb));
+		if (i < ps->tmpb / 2)
 		{
-			while (index--)
+			while (i--)
 				rule_rb(ps);
 		}
 		else
 		{
-			while (++index <= ps->tmpb)
+			while (i++ <= ps->tmpb)
 				rule_rrb(ps);
 		}
 		rule_pa(ps);
