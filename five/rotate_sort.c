@@ -6,7 +6,7 @@
 /*   By: vgosset <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/10 14:47:00 by vgosset           #+#    #+#             */
-/*   Updated: 2016/11/19 16:54:11 by vgosset          ###   ########.fr       */
+/*   Updated: 2016/11/19 17:34:21 by vgosset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,22 +81,22 @@ int				rotate_hard_a(t_pushswap *ps)
 	return (_ERROR_);
 }
 
-int				five_rotate(t_pushswap *ps)
+void			five_rotate(t_pushswap *ps)
 {
 	int i;
 
-	i = 1;
+	i = 0;
 	rule_pb(ps);
 	rule_pb(ps);
 	three_rotate(ps);
-	while (is_not_sorted(ps) == 1)
+	while (i != 1)
 	{
-		if (ps->b[i] < ps->a[0])
+		if (ps->b[i] < ps->a[2])
 		{
 			rule_pa(ps);
 			rule_ra(ps);
 		}
-		else if (ps->b[i] > ps->a[0] && ps->b[i] < ps->a[1])
+		else if (ps->b[i] > ps->a[2] && ps->b[i] < ps->a[1])
 		{
 			rule_pa(ps);
 			rule_rra(ps);
@@ -104,32 +104,33 @@ int				five_rotate(t_pushswap *ps)
 			rule_ra(ps);
 			rule_ra(ps);
 		}
-		else if (ps->b[i] > ps->a[1] && ps->b[i] < ps->a[2])
+		else if (ps->b[i] > ps->a[1] && ps->b[i] < ps->a[0])
 		{
 			rule_pa(ps);
 			rule_sa(ps);
 		}
-		i--;
+		i++;
 	}
 }
 
 void			three_rotate(t_pushswap *ps)
 {
-	if (ps->a[0] > ps->a[1] && ps->a[1] < ps->a[2])
+	if (ps->a[2] > ps->a[1] && ps->a[1] < ps->a[0])
 		return ;
-	else if (ps->a[0] < ps->a[1] && ps->a[1] > ps->a[2] && ps->a[0] < ps->a[2])
+	else if (ps->a[2] < ps->a[1] && ps->a[1] > ps->a[0] && ps->a[0] < ps->a[2])
 		rule_sa(ps);
-	else if (ps->a[0] > ps->a[1] && ps->a[1] < ps->a[2] && ps->a[0] < ps->a[2])
+	else if (ps->a[2] > ps->a[1] && ps->a[1] < ps->a[0] && ps->a[2] < ps->a[0])
 	{
 		rule_rra(ps);
 		rule_sa(ps);
 	}
-	else if (ps->a[0] > ps->a[1] && ps->a[1] > ps->a[2] && ps->a[0] > ps->a[2])
+	else if (ps->a[2] > ps->a[1] && ps->a[1] > ps->a[0] && ps->a[2] > ps->a[0])
 		rule_ra(ps);
-	else if (ps->a[0] > ps->a[1] && ps->a[1] < ps->a[2] && ps->a[0] > ps->a[2])
+	else if (ps->a[2] > ps->a[1] && ps->a[1] < ps->a[0] && ps->a[2] > ps->a[0])
 		rule_rra(ps);
-	else if (ps->a[0] > ps->a[1] && ps->a[1] > ps->a[2])
+	else if (ps->a[2] > ps->a[1] && ps->a[1] > ps->a[0])
 	{
 		rule_ra(ps);
 		rule_ra(ps);
+	}
 }
